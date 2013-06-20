@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block acces %} 
+	{% if logged %}
+    	<li><a href="/blog/logout">Logout</a></li>
+	{% else %}
+    	<li><a href="/blog/signup">Signup</a></li> 
+		<li><a href="/blog/login">Login</a></li> 
+	{% endif %}
+{% endblock%}
+
+{% block body_sections %}
+	<section>
+		<article>
+			<header>
+				<h2>Info</h2>
+				<hr>
+			</header>
+			<p>
+				Hola, me llamo Carlos Eladio Fernández Ordoñez, y este es el sitio Web que he desarrollado para el curso <a href="https://www.udacity.com/course/cs253">Web Development</a> de Udacity.
+			</p>
+			<p>
+				Está desarrollado con Python para el lado del servidor y Jinja2 como lenguaje de plantillas. Para el framework web he utilizado Webapp2, ya que permite un desarrollo a un nivel más bajo que Django.
+			</p>
+			<p>
+				Puedes ver y dercargar el código en <a href="">Github</a>.
+			</p>
+		</article>
+
+		<article>
+			<header>
+				<h2>Desarrollo</h2>
+				<hr>
+			</header>
+			<p>
+				Las funcionalidades implementadas son:
+			</p>
+			<ul>
+				<li>Registro de nuevos usuarios (Signup):</li>
+					<ul>
+						<li>Validación de entrada de datos mediante expresiones regulares</li>
+						<li>Las contraseñas son hasheadas con <em>bcrypt</em> antes de ser almacenadas en la BB.DD. </li>
+						<li>Función "remember me". Si un usuario que ya está logeado intenta acceder a la página de registro, se le redirectiona a la página de vienvenida</li>
+					</ul>
+				<li>Login:</li>
+					<ul>
+						<li>Las cookies son hasheadas mediante <em>bcryp</em></li>
+						<li>Verificación de las cookies cuando se carga una página</li>
+						<li>Función "remember me". Si un usuario que ya está logeado intenta acceder a la página de login, se le redirectiona a la página de vienvenida</li>
+					</ul>
+				<li>Logout:</li>
+					<ul>
+						<li>Borra la cookie y redirecciona a la página de registro</li>
+					</ul>
+				<li>Blog:</li>
+					<ul>
+						<li>New Post</li>
+						<li>JSON</li>
+						<li>Clear Memcache</li>
+					</ul>
+				<li>Wiki</li>
+			</ul>
+		</article>
+	</section>
+{% endblock %}

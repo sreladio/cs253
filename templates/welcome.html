@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block acces %} 
+	{% if logged %}
+    	<li><a href="/blog/logout">Logout</a></li>
+	{% else %}
+    	<li><a href="/blog/signup">Signup</a></li> 
+		<li><a href="/blog/login">Login</a></li> 
+	{% endif %}
+{% endblock%}
+
+{% block body_sections %}
+	<section>
+		<article>
+			<header>
+				<hgroup>
+					<h1>Signup</h1>
+				</hgroup>
+			</header>
+			<h2>Welcome, {{ username }}!</h2>
+		</article>
+	</section>
+{% endblock %}

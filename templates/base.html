@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<link href="/stylesheets/main.css" rel="stylesheet">
+	<title>Eladio Udacity CS253 Web Development</title>
+</head>
+
+<body>
+	<header>
+		<h1 class="main-header-title">Udacity CS253 Web Development</h1>
+		<ul class="access">
+			{% block acces %} {% endblock%}
+		</ul>
+	</header>
+
+  	<nav class="main-nav">
+		<ul>
+			<li><a href="/">Inicio</a></li>
+			<li><a href="/blog">Blog</a></li>
+			<li><a href="/blog/newpost">New post</a></li>
+			<li><a href="/blog/.json">JSON Blog Feed</a></li>
+			<li><a href="/blog/flush">Clear Memcache</a></li>
+			<li><a href="">Wiki</a></li>
+		</ul>
+	</nav>
+
+	{% block body_sections %}{% endblock %}
+
+	{% block body_aside %}{% endblock %}
+
+	<footer id="page-footer-container">	
+		{% block footer_sections %}{% endblock %}
+	</footer>
+</body>
+</html>

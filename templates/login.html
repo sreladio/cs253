@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block acces %} 
+    {% if logged %}
+        <li><a href="/blog/logout">Logout</a></li>
+    {% else %}
+        <li><a href="/blog/signup">Signup</a></li> 
+        <li><a href="/blog/login">Login</a></li> 
+    {% endif %}
+{% endblock%}
+
+{% block body_sections %}
+	<section>
+		<article>
+			<header>
+				<h1>Login</h1>
+			</header>
+			<form action="login" method="POST">
+
+                <label>
+                    Username
+                    <input type="text" name="username" value="{{ username }}" placeholder="username" required=><span class="error"> {{ username_error }}</span>
+                </label>
+                
+                <br>
+
+                <label>
+                    Password
+                    <input type="password" name="password" placeholder="password" required><span class="error"> {{ password_error }}</span>
+                </label>
+                
+                <br>
+                <br>
+
+                <input type="submit" value="Login">
+            </form>
+		</article>
+	</section>
+{% endblock %}

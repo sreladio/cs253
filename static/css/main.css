@@ -1,0 +1,202 @@
+
+h1 {
+	font-size: 52px;
+	color: #3c3c3c;
+}
+
+h2 {
+	font-size: 32px;
+	margin-bottom: -3px;
+	color: #3c3c3c;
+}
+
+hr {
+	margin: 10 20 10 auto;
+}
+
+p, li {
+	color: #666;
+}
+
+a {
+	text-decoration: none;
+	color: #FE2D44;
+	opacity: 0.8;
+}
+
+a:hover {
+	opacity: 1;
+}
+
+body {
+	width: 80%;
+	height: auto;
+	margin: 0 auto 0px;
+	font-family: sans-serif;
+	padding: 10px;
+}
+
+label {
+	display: inline-block;
+	width: 15em;
+	margin-bottom: 15px;
+	font-size: 20px;
+}
+
+form input {
+	display: inline-block;
+}
+
+input[type=text] {
+	width: 400px;
+	font-size: 20px;
+	padding: 2px;
+}
+
+input[type=password] {
+	width: 400px;
+	font-size: 20px;
+	padding: 2px;
+}
+
+input[type=submit] {
+	font-size: 24px;
+}
+
+textarea {
+	width: 400px;
+	height: 400px;
+	padding: 10px;
+	font-size: 17px;
+	font-family: monospace;
+}
+
+time {
+	position: absolute;
+	margin-top: 20px;
+	right: 10%;
+	font-size: 22px;
+	color: #AAAAAA;
+}
+
+/* Main title 
+*****************************************/
+.main-header-title{
+	text-align: center;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+/* Navigation Bar 
+*****************************************/
+.main-nav {
+	clear: both;
+	background-color: #DDD;
+	padding: 5px;
+}
+
+.main-nav ul {
+	margin-left: 5%;
+	padding: 0px;
+}
+
+.main-nav ul li {
+	display: inline;
+	text-align: center;
+	padding: 10px 20px;
+}
+
+.main-nav ul li a{
+	font-size: 20px;
+	padding: 10px 20px;
+
+	/* Firefox */
+    -moz-transition-property: all;
+    -moz-transition-duration: 1s;
+    -moz-transition-timing-function: linear;
+    -moz-transition-delay: 0.2s;
+ 
+ 
+    /* Chrome / Safari */
+    -webkit-transition-property: all;
+    -webkit-transition-duration: 0.4s;
+    -webkit-transition-timing-function: linear;
+    -webkit-transition-delay: 0s;
+ 
+ 
+    /* Opera */
+    -o-transition-property: all;
+    -o-transition-duration: 0.4s;
+    -o-transition-timing-function: linear;
+    -o-transition-delay: 0s;
+ 
+ 
+    /* Default */
+    transition-property: all;
+    transition-duration: 0.4s;
+    transition-timing-function: linear;
+    transition-delay: 0s;
+}
+
+.main-nav ul li a:hover {
+	background-color: #555;
+}
+
+
+/* Login area 
+*****************************************/
+.access {
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	background-color: black;
+	text-align: right;
+	padding: 5px;
+	margin-top: 0px;
+}
+
+.access li {
+	display: inline;
+	padding-left: 15px;
+}
+
+.access li a {
+	text-decoration: none;
+	color: white;
+	opacity: 1;
+}
+
+.access li a:hover {
+	color: red;
+}
+
+.permalink a {
+	font-size: 15px;
+	font-style: italic;	
+}
+
+.error {
+	color: #FE2E2E;
+}
+
+#page-footer-container {
+	margin-top: 20px;
+	border-top: 5px solid black;
+
+}
+
+.query-age {
+	position: absolute;
+	right: 10%;
+	font-size: 12px;
+	color: gray;
+}
+
+::selection {
+	background: #ffb7b7;
+}
+
+::-moz-selection {
+	background: #ffb7b7;
+}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block body_sections %}
+  <section>
+    <article>
+      <header>
+        <h1>ROT 13</h1>
+        <h2>Enter some text to ROT 13:</h2>
+      </header>
+      <br>
+      <form method = "POST" action = "/ROT13">
+        <textarea name="text">{{ text }}</textarea>
+        <br>
+        <br>
+        <input type="submit">
+      </form>
+    </article>
+  </section>
+{% endblock %}
