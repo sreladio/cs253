@@ -1,21 +1,21 @@
-from py_bcrypt import bcrypt
+from lib import bcrypt
 
 def rot13(string_to_evaluate):
     alphabet = 'abcdefghijklmnopqrstuvwxyz'
-    s = ''
+    str_ro = ''
 
     for i in string_to_evaluate:
       if i.lower() in alphabet:
         for j in range(0, len(alphabet)):
           if i == alphabet[j]:
-            s += alphabet[(13 + j) % len(alphabet)]
+            str_ro += alphabet[(13 + j) % len(alphabet)]
             
           elif i == alphabet[j].upper():
-            s += alphabet[(13 + j) % len(alphabet)].upper()
+            str_ro += alphabet[(13 + j) % len(alphabet)].upper()
       else:
-        s += i
+        str_ro += i
 
-    return s
+    return str_ro
 
 def hash(value):
   salt = bcrypt.gensalt()

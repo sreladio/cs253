@@ -11,10 +11,10 @@ def valid_password(password, verify):
     return PASS_RE.match(password) and password == verify
 
 def valid_email(email):
-    if email == '' or email == None:
-      return True
-    else:
-      return MAIL_RE.match(email)
+	if email == '' or email == None:
+		return True
+	else:
+		return MAIL_RE.match(email)
 
 def empty_email(email):
 	if email == '' or email == None:

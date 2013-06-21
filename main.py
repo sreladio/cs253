@@ -17,22 +17,26 @@
 import webapp2
 
 # handlers
-from handlers import MainHandler
-from blog import *
+from handlers import main
+from handlers import blog
+from handlers import login
 
 #
 # Handlers registrations
 #
 app = webapp2.WSGIApplication([
-    ('/', MainHandler),
-    ('/blog/signup', Signup),
-    ('/blog/login', Login),
-    ('/blog/logout', Logout),
-    ('/welcome', Welcome),
-    ('/blog/?', FrontBlog),
-    ('/blog/newpost', NewPost),
-    ('/blog/([0-9]+)', Post),
-    ('/blog/([0-9]+).json', JsonPost),
-    ('/blog/.json', JsonBlog),
-    ('/blog/flush', FlushCache)
+    ('/', main.MainHandler),
+
+    ('/blog/signup', login.Signup),
+    ('/blog/login', login.Login),
+    ('/blog/logout', login.Logout),
+    ('/welcome', login.Welcome),
+
+    ('/blog/?', blog.FrontPage),
+    ('/blog/newpost', blog.NewPost),
+    ('/blog/([0-9]+)', blog.Post),
+    ('/blog/([0-9]+).json', blog.JsonPost),
+    ('/blog/.json', blog.JsonBlog),
+    
+    ('/blog/flush', blog.FlushCache)
 ], debug=True)
