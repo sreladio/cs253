@@ -16,6 +16,9 @@ class Post(db.Model):
   	def get_all(cls):
   		return db.GqlQuery("SELECT * FROM Post ORDER BY date DESC")
 
+#
+# Entitie User
+#
 class User(db.Model):
 	name = db.StringProperty()
 	password = db.StringProperty()
@@ -39,3 +42,27 @@ class User(db.Model):
 	def get_by_id(cls, user_id):
 		key = db.Key.from_path('User', int(user_id))
 		return db.get(key)
+
+#
+# Entitie WikiPage
+#
+class WikiPage(db.Model):
+	url = db.LinkProperty()
+	title = db.StringProperty()
+	content = db.TextProperty()
+	created = db.DateProperty(auto_now_add=True)
+	edit = db.DateProperty(auto_now_add=True)
+
+	@classmethod
+	def get_by_url(cls, url):
+		query = db.Query(WikiPage)
+		query.filter('url = ', url)
+		return query.get()
+
+	@classmethod
+	def create(cls, url, title, content):
+		return WikiPage(url=url, title=title, content=content)
+
+	@classmethod
+  	def get_all(cls):
+  		return db.GqlQuery("SELECT * FROM WikiPage ORDER BY created DESC")

@@ -101,7 +101,7 @@ class Login(main.MainHandler):
 class Logout(main.MainHandler):
   def get(self):
     self.set_cookie('user_id')
-    self.redirect('/blog/signup')
+    self.redirect('/signup')
 
 #
 # Welcome Handler
@@ -121,4 +121,4 @@ class Welcome(main.MainHandler):
         self.error(404)
         return
     else:
-      self.redirect('/blog/signup')
+      self.redirect('/signup')

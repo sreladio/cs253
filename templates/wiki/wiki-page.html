@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block body_sections %}
+    <section>
+        <article>
+            <header>
+                <h1>Wiki</h1>
+                <h2>Wiki page: {{ title }}</h2>
+            </header>
+            <hr>
+            <p>
+                {{content.replace('\n', '<br>') | safe}}
+            </p>
+            <footer class="permalink">
+                <a href="/wiki/_edit/{{ page }}">Edit</a>
+            </footer>
+        </article>
+    </section>
+{% endblock %}

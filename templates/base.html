@@ -10,7 +10,12 @@
 	<header>
 		<h1 class="main-header-title">Udacity CS253 Web Development</h1>
 		<ul class="access">
-			{% block acces %} {% endblock%}
+			{% if logged %}
+    			<li><a href="/logout">Logout</a></li>
+			{% else %}
+    			<li><a href="/signup">Signup</a></li> 
+				<li><a href="/login">Login</a></li> 
+			{% endif %}
 		</ul>
 	</header>
 
@@ -21,7 +26,8 @@
 			<li><a href="/blog/newpost">New post</a></li>
 			<li><a href="/blog/.json">JSON Blog Feed</a></li>
 			<li><a href="/blog/flush">Clear Memcache</a></li>
-			<li><a href="">Wiki</a></li>
+			<li><a href="/wiki">Wiki</a></li>
+			<li><a href="/wiki/_edit/NewWikiPage">New Wiki Page</a></li>
 		</ul>
 	</nav>
 

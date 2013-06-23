@@ -74,8 +74,8 @@ class Post(main.MainHandler):
 
     logged = self.is_logged()
     post = memcache.get(post_id)
-    
-    if not post or update_cache:
+
+    if update_cache or post is None:
       post = model.Post.get_by_id(long(post_id))
       if post:
         memcache.set(post_id, post)
@@ -84,8 +84,7 @@ class Post(main.MainHandler):
         self.error(404)
         return
     
-    time_from_last_query = time_since(blog_query_creation_time)
-
+    time_from_last_query = time_since(post_query_creation_time)
     values = {"subject":post.subject, 
               "date":post.date, 
               "content":post.content,
@@ -93,7 +92,6 @@ class Post(main.MainHandler):
               "logged":logged
               
               }
-
     self.render('/blog/blog-post.html', **values)
 
   def post(self, post_id):

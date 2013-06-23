@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block body_sections %}
+    <section>
+        <article>
+            <header>
+                <h1>Wiki</h1>
+                <h2>Edit {{ title }} page</h2>
+            </header>
+            <hr>
+            <br>
+            <form action="/wiki/_edit{{page}}" method="POST">
+                <div>
+                    <label>Title:</label>
+                </div>
+                <input type="text" name="wiki-title" value="{{ title }}">
+                <br>
+                <br>
+                <div>
+                    <label>Content:</label>
+                </div>
+                <textarea class="wiki-textarea" name="wiki-content">{{ content }}</textarea> {{ error }}</span>
+                <br>
+                <br>
+                <input type="submit" value="Save">
+            </form>
+        </article>
+    </section>
+{% endblock %}

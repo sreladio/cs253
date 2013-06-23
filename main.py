@@ -15,11 +15,16 @@
 # limitations under the License.
 #
 import webapp2
+import re
 
 # handlers
 from handlers import main
 from handlers import blog
 from handlers import login
+from handlers import wiki
+
+# wiki page url
+PAGE_RE = r'(/(?:[a-zA-Z0-9_-]+/?)*)'
 
 #
 # Handlers registrations
@@ -27,9 +32,9 @@ from handlers import login
 app = webapp2.WSGIApplication([
     ('/', main.MainHandler),
 
-    ('/blog/signup', login.Signup),
-    ('/blog/login', login.Login),
-    ('/blog/logout', login.Logout),
+    ('/signup', login.Signup),
+    ('/login', login.Login),
+    ('/logout', login.Logout),
     ('/welcome', login.Welcome),
 
     ('/blog/?', blog.FrontPage),
@@ -38,5 +43,10 @@ app = webapp2.WSGIApplication([
     ('/blog/([0-9]+).json', blog.JsonPost),
     ('/blog/.json', blog.JsonBlog),
     
-    ('/blog/flush', blog.FlushCache)
+    ('/blog/flush', blog.FlushCache),
+
+    ('/wiki/?', wiki.FrontPage),
+    ('/wiki/_edit' + PAGE_RE, wiki.EditPage),
+    webapp2.Route('/wiki/<page>', wiki.WikiPage, name='wiki-page'),
+
 ], debug=True)

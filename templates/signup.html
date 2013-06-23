@@ -1,14 +1,5 @@
 {% extends "base.html" %}
 
-{% block acces %} 
-    {% if logged %}
-        <li><a href="/blog/logout">Logout</a></li>
-    {% else %}
-        <li><a href="/blog/signup">Signup</a></li> 
-        <li><a href="/blog/login">Login</a></li> 
-    {% endif %}
-{% endblock%}
-
 {% block body_sections %}
     <section>
         <article>
