@@ -1,5 +1,8 @@
 from google.appengine.ext import db
 
+# utils
+from utils import encryption
+
 #
 # Entitie Post
 #
@@ -24,13 +27,13 @@ class User(db.Model):
 	password = db.StringProperty()
 	email = db.EmailProperty(default=None)
 
-	# @staticmethod probar que esta etiqueta funciona bien
 	def get_id(self):
 		return self.key().id()
 
 	@classmethod
 	def create(cls, name, password, email=None):
-		return User(name = name, password = password, email = email)
+		hashed_password = encryption.hash(password)
+		return User(name=name, password=hashed_password, email=email)
 
 	@classmethod
 	def get_by_name(cls, name):
