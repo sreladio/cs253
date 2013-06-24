@@ -1,3 +1,5 @@
+import logging
+
 # base handler
 from handlers import main
 
@@ -8,12 +10,37 @@ from entities import model
 from utils import validation
 from utils import encryption
 
+def login_required(handler):
+  "Requires that a user be logged in to access the resource"
+
+  def check_login(self, *args, **kwargs): 
+    logged = self.is_logged()
+    if not logged:
+      return self.redirect('/login')
+    else:
+      return handler(self, *args, **kwargs)
+
+  return check_login
+
+def already_logged(handler):
+  "Pass through if user is already logged"
+
+  def check_login(self, *args, **kwargs): 
+    logged = self.is_logged()
+    if logged:
+      return self.redirect('/welcome')
+    else:
+      return handler(self, *args, **kwargs)
+
+  return check_login
+
 #
 # Signup handler
 #
 class Signup(main.MainHandler):
+  @already_logged
   def get(self):
-    self.on_load('signup.html', '/welcome')
+    self.render('signup.html')
 
   def post(self):
     valid_form = True
@@ -45,19 +72,16 @@ class Signup(main.MainHandler):
 
     # check if user already exist
     user = model.User.get_by_name(u)
-    if user is not None:
+    if user:
       if user.name ==  u:
         errors['username_error'] = "That user name already exist"
         valid_form = False
 
     # register user
     if valid_form:
-      
-      # hash a password
-      pwd_hash = encryption.hash(p)
-
+  
       # create the entitie and store in the D.B
-      new_user = model.User.create(u, pwd_hash, e)
+      new_user = model.User.create(u, p, e)
       new_user.put()
 
       # set cookie and redirect
@@ -70,8 +94,9 @@ class Signup(main.MainHandler):
 # Login Handler
 #
 class Login(main.MainHandler):
+  @already_logged
   def get(self):
-    self.on_load('login.html', '/welcome')
+    self.render('login.html')
 
   def post(self):
     # get the username and pass from the request
@@ -107,18 +132,21 @@ class Logout(main.MainHandler):
 # Welcome Handler
 #
 class Welcome(main.MainHandler):
+  @login_required
   def get(self):
     # get the cookie
     user_id, user_id_hash = self.get_cookie('user_id')
-    logged = self.is_logged()
-    if logged:
-      # search for the ID in the data base
-      user = model.User.get_by_id(user_id)
-      # render the page
-      if user:
-        self.render('welcome.html', username=user.name, logged=True)
-      else:
-        self.error(404)
-        return
+
+    # search for the ID in the data base
+    user = model.User.get_by_id(user_id)
+    
+    # render the page
+    if user:
+      self.render('welcome.html', username=user.name, logged=True)
     else:
-      self.redirect('/signup')
+      self.error(404)
+      return
+
+
+
+    
