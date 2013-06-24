@@ -8,7 +8,7 @@ from entities import model
 # Edit Page Handler
 #
 class EditPage(main.MainHandler):
-	def get(self, path):
+	def get(self, path, error=""):
 		# build the uri for the wiki page
 		page_url = self.uri_for('wiki-page', _full=True, page=path[1:])
 
@@ -22,12 +22,17 @@ class EditPage(main.MainHandler):
 			title = path[1:]
 
 		# render the edit page
-		self.render('/wiki/edit-page.html', page=path, title=title, content=content)		
+		self.render('/wiki/edit-page.html', page=path, title=title, content=content, error=error)		
 
 	def post(self, path):
 		title = self.request.get('wiki-title')
 		content = self.request.get('wiki-content')
 		page_url = self.uri_for('wiki-page', _full=True, page=path[1:])
+
+		if title == '' or content == '':
+			error = 'Title and content, please!'
+			self.get(path, error)
+			return
 
 		# search for the wiki page in the DB
 		wiki_page = model.WikiPage.get_by_url(page_url)
