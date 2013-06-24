@@ -1,4 +1,3 @@
-
 h1 {
 	font-size: 52px;
 	color: #3c3c3c;
@@ -92,24 +91,30 @@ time {
 .main-nav {
 	clear: both;
 	background-color: #DDD;
-	padding: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	min-width: 290px;
 }
 
 .main-nav ul {
 	margin-left: 5%;
 	padding: 0px;
+	font-size: 0px;
 }
 
 .main-nav ul li {
-	display: inline;
+	box-sizing: border-box;
+	display: inline-block;
+	vertical-align: top;
 	text-align: center;
 	padding: 10px 20px;
+	font-size: 20px;
 }
 
 .main-nav ul li a{
-	font-size: 20px;
 	padding: 10px 20px;
-
+	text-transform: uppercase;
+	color: #3c3c3c;
 	/* Firefox */
     -moz-transition-property: all;
     -moz-transition-duration: 1s;
@@ -139,9 +144,14 @@ time {
 }
 
 .main-nav ul li a:hover {
+	color: #FE2D44;
 	background-color: #555;
 }
 
+.main-nav ul li .selected {
+	background-color: none;
+	color: red;
+}
 
 /* Login area 
 *****************************************/

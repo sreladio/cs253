@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block wiki %}class="selected"{% endblock %}
+
 {% block body_sections %}
 	<section>
 		<header>
@@ -7,7 +9,7 @@
 		</header>
 		
 		<article>
-			<h3>(*) You also can type "/wiki/page_that_doesn't_exist_yet/" in the address bar for edit a new wiki page.</h3>
+			<h3>(*) Type "/wiki/page_that_doesn't_exist_yet/" in the address bar for create a new wiki page.</h3>
 		</article>
 
 		<br>
@@ -19,9 +21,6 @@
 				<hr>
 			</header>
 			<p>{{page.content.replace('\n', '<br>') | safe}}</p>
-			<footer class="permalink">
-				<a href="/wiki/_edit/{{ page.title }}">Edit</a>
-			</footer>
 		</article>
 		{% endfor %}
 	</section>

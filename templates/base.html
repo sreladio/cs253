@@ -21,13 +21,12 @@
 
   	<nav class="main-nav">
 		<ul>
-			<li><a href="/">Inicio</a></li>
-			<li><a href="/blog">Blog</a></li>
-			<li><a href="/blog/newpost">New post</a></li>
+			<li><a {% block index %}{% endblock %} href="/">Inicio</a></li>
+			<li><a {% block blog %}{% endblock %} href="/blog">Blog</a></li>
+			<li><a {% block newpost %}{% endblock %} href="/blog/newpost">New post</a></li>
 			<li><a href="/blog/.json">JSON Blog Feed</a></li>
 			<li><a href="/blog/flush">Clear Memcache</a></li>
-			<li><a href="/wiki">Wiki</a></li>
-			<li><a href="/wiki/_edit/NewWikiPage">New Wiki Page</a></li>
+			<li><a {% block wiki %}{% endblock %} href="/wiki">Wiki</a></li>
 		</ul>
 	</nav>
 
