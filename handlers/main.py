@@ -64,10 +64,3 @@ class MainHandler(webapp2.RequestHandler):
       return val, hash_val
     else:
       return None, None
-
-  def on_load(self, template, url):
-    logged = self.is_logged()
-    if not logged:
-      self.render(template, logged=logged)
-    else:
-      self.redirect(url)
