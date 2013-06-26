@@ -20,22 +20,22 @@ import re
 # handlers
 from handlers import main
 from handlers import blog
-from handlers import login
+from handlers import auth
 from handlers import wiki
 
 # wiki page url
 PAGE_RE = r'(/(?:[a-zA-Z0-9_-]+/?)*)'
-
+    
 #
 # Handlers registrations
 #
 app = webapp2.WSGIApplication([
     ('/', main.MainHandler),
 
-    ('/signup', login.Signup),
-    ('/login', login.Login),
-    ('/logout', login.Logout),
-    ('/welcome', login.Welcome),
+    ('/signup/?', auth.Signup),
+    ('/login/?', auth.Login),
+    ('/logout/?', auth.Logout),
+    ('/welcome/?', auth.Welcome),
 
     ('/blog/?', blog.FrontPage),
     ('/blog/newpost', blog.NewPost),
@@ -45,8 +45,12 @@ app = webapp2.WSGIApplication([
     
     ('/blog/flush', blog.FlushCache),
 
-    ('/wiki/?', wiki.FrontPage),
+    
     ('/wiki/_edit' + PAGE_RE, wiki.EditPage),
+    ('/wiki/_history' + PAGE_RE, wiki.HistoryPage),
     webapp2.Route('/wiki/<page>', wiki.WikiPage, name='wiki-page'),
+    ('/wiki/?', wiki.FrontPage),
 
 ], debug=True)
+
+
