@@ -11,7 +11,7 @@
 		<h1 class="main-header-title">Udacity CS253 Web Development</h1>
 		<ul class="access">
 			{% if logged %}
-    			<li><a href="/logout">Logout</a></li>
+    			<li><a href="/logout">Logout ({{logged}})</a></li>
 			{% else %}
     			<li><a href="/signup">Signup</a></li> 
 				<li><a href="/login">Login</a></li> 
