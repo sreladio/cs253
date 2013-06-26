@@ -203,6 +203,25 @@ time {
 	color: gray;
 }
 
+.row-even {
+	background-color: #666666;
+}
+
+.row-uneven {
+	background-color: #555;
+}
+
+.row-even p, .row-uneven p {
+	margin: 0px;
+	padding: 15px 0px 15px 10px;
+	color: white;
+}
+
+.row-even a, .row-uneven a {
+	float: right;
+	padding-right: 15px;
+}
+
 ::selection {
 	background: #ffb7b7;
 }
