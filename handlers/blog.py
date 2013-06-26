@@ -24,7 +24,6 @@ class FrontPage(main.MainHandler):
   def get(self):
     global update_cache, blog_query_creation_time
 
-    logged = self.is_logged()
     posts = memcache.get('posts')
     
     if not posts or update_cache:    
@@ -35,8 +34,8 @@ class FrontPage(main.MainHandler):
       
     time_from_last_query = time_since(blog_query_creation_time)
     template_values = {"posts":posts, 
-                       "query_time_stat":time_from_last_query, 
-                       "logged":logged}
+                       "query_time_stat":time_from_last_query
+                      }
 
     self.render('/blog/blog-front.html', **template_values)
 
@@ -45,8 +44,7 @@ class FrontPage(main.MainHandler):
 #
 class NewPost(main.MainHandler):
   def get(self):
-    logged = self.is_logged()
-    self.render('/blog/new-post.html', logged=logged)
+    self.render('/blog/new-post.html')
 
   def post(self):
     global update_cache
@@ -72,7 +70,6 @@ class Post(main.MainHandler):
   def get(self, post_id):
     global post_query_creation_time
 
-    logged = self.is_logged()
     post = memcache.get(post_id)
 
     if update_cache or post is None:
@@ -88,9 +85,7 @@ class Post(main.MainHandler):
     values = {"subject":post.subject, 
               "date":post.date, 
               "content":post.content,
-              "query_time_stat":time_from_last_query, 
-              "logged":logged
-              
+              "query_time_stat":time_from_last_query
               }
     self.render('/blog/blog-post.html', **values)
 
