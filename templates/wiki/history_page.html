@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block body_sections %}
+    <section>
+        <article>
+            <header>
+                <h1>Wiki</h1>
+                <h2>History page: {{ title }}</h2>
+            </header>
+            <hr>
+            {% for entry in edit_record %}
+                {% if loop.index is divisibleby 2 %}
+                    <div class="row-even">
+                        <p>{{ entry.edit_date }} - {{ entry.edit_cont}} <span><a href="">view</a> <a href="">edit</a></span></p>
+                    </div>
+                {% else %}
+                    <div class="row-uneven">
+                        <p>{{ entry.edit_date }} - {{ entry.edit_cont}} <span><a href="">view</a> <a href="">edit</a></span></p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </article>
+    </section>
+{% endblock %}
