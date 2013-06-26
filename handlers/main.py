@@ -3,6 +3,9 @@ import webapp2
 import jinja2
 import json
 
+# db models
+from entities import model
+
 # utils
 from utils import encryption
 
@@ -15,20 +18,31 @@ jinja_environment = jinja2.Environment(autoescape=True,
 #
 class MainHandler(webapp2.RequestHandler):
   def get(self):
-    logged = self.is_logged()
-    self.render('index.html', logged=logged)
+    self.render('index.html')
 
-  def write(self, a):
+  def write_html(self, a):
     self.response.out.write(a)
 
   def write_json(self, data):
     json_object = json.dumps(data)
     self.response.headers["Content-Type"] = "application/json"
-    self.write(json_object)
+    self.write_html(json_object)
 
   def render(self, template, **params):
     t = jinja_environment.get_template(template)
-    self.write(t.render(params))
+
+    # this need to be refactored to avoid the 
+    # query every time a page is rendered when
+    # a user is logged
+    user_id = self.is_logged()
+    username = None
+
+    if user_id:
+      user = model.User.get_by_id(user_id)
+      username = user.name
+
+    params['logged'] = username
+    self.write_html(t.render(params))
 
   def init_user(self, user):
     # make the cookie
@@ -38,12 +52,15 @@ class MainHandler(webapp2.RequestHandler):
     # redirect to welcome page
     self.redirect('/welcome')
 
+  # return the user_id if the user is logged
   def is_logged(self):
     val, hash_val = self.get_cookie('user_id')
     if not val and not hash_val:
-      return False
+      return None
+    elif self.check_cookie(val, hash_val) is False:
+      return None
     else:
-      return self.check_cookie(val, hash_val)
+      return val
 
   def make_cookie(self, user):
     user_id = str(user.get_id())
