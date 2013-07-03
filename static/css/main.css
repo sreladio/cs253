@@ -211,15 +211,27 @@ time {
 	background-color: #555;
 }
 
-.row-even p, .row-uneven p {
-	margin: 0px;
-	padding: 15px 0px 15px 10px;
+.row-even table, .row-uneven table {
+	width: 100%;
+	padding: 8px;
 	color: white;
 }
 
-.row-even a, .row-uneven a {
+.row-even td, .row-uneven td {
+	vertical-align: text-bottom;
+}
+
+.col-view a {
 	float: right;
 	padding-right: 15px;
+}
+
+.col-version {
+	width: 10%;
+}
+
+.col-created {
+	width: 20%;
 }
 
 ::selection {
