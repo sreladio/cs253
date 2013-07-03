@@ -29,29 +29,44 @@
 				Las funcionalidades implementadas son:
 			</p>
 			<ul>
-				<li>Registro de nuevos usuarios (Signup):</li>
+				<li>Login y registro de nuevos usuarios (Signup):
 					<ul>
-						<li>Validación de entrada de datos mediante expresiones regulares</li>
-						<li>Las contraseñas son hasheadas con <em>bcrypt</em> antes de ser almacenadas en la BB.DD. </li>
-						<li>Función "remember me". Si un usuario que ya está logeado intenta acceder a la página de registro, se le redirectiona a la página de vienvenida</li>
+						<li>Conexión HTTPs.</li>
+						<li>Validación de entrada de datos mediante expresiones regulares.</li>
+						<li>Las contraseñas son hasheadas con <em>bcrypt</em> antes de ser almacenadas en la BB.DD.</li>
+						<li>Las cookies son hasheadas mediante <em>bcryp.</em></li>
+						<li>Verificación de las cookies cuando se carga una página.</li>
+						<li><em>Python Decorator</em> para recursos con restricciones. Si un usuario que no está logedo intenta acceder a la página de edición de una wiki, se le redirecciona a la página de login. Si un usuario que ya está logeado intenta acceder a la página de login, se le redirecciona a la página de vienvenida.</li>
 					</ul>
-				<li>Login:</li>
+				</li>
+				<li>Logout:
 					<ul>
-						<li>Las cookies son hasheadas mediante <em>bcryp</em></li>
-						<li>Verificación de las cookies cuando se carga una página</li>
-						<li>Función "remember me". Si un usuario que ya está logeado intenta acceder a la página de login, se le redirectiona a la página de vienvenida</li>
+						<li>Borra la cookie y redirecciona a la página de login.</li>
 					</ul>
-				<li>Logout:</li>
+				</li>
+				<li>Blog:
 					<ul>
-						<li>Borra la cookie y redirecciona a la página de registro</li>
+						<li>New Post: permite añadir una nueva entrada al blog.</li>
+						<li>JSON: salida en formato JSON de las entradas del blog.</li>
+						<li>Memcache: la "front page" del blog es cacheada la primera vez que se accede o cuando se añade un nuevo post. También se cachea cada post de manera individual cuando se accede a través de su permalink. La opción <em>Clear Memcache</em> permite vaciar la caché.</li>
 					</ul>
-				<li>Blog:</li>
+				</li>
+				<li>Wiki
 					<ul>
-						<li>New Post</li>
-						<li>JSON</li>
-						<li>Clear Memcache</li>
+						<li>Necesario estar logeado para crear o editar una página.</li>
+						<li>Si se introduce una dirección que no existe en la barra de direcciones, se redireccionará automáticamente a la página de edición donde podemos añadir una nueva entrada a la wiki. En caso contrario (si la página existe), se mostrará su contenido.</li>
+						<li>En el historial de edición de una página, es posible ver y editar el contenido de versiones anteriores a la actual.</li>
 					</ul>
-				<li>Wiki</li>
+				</li>
+			</ul>
+
+			<p>
+				En cuanto a las ampliaciones y funcionalidades que quedan por hacer:
+			</p>
+			<ul>
+				<li><em>Markdown</em> para permitir algunas etiquetas HTML en la edición de los post y de las páginas wiki evitando ataques XSS.</li>
+				<li><em>GetText</em> para la internacionalización de la página.</li>
+				<li><em>CSS media queries</em> para que la página se adapte tanto a dispositivos móviles como de escritorio.</li>
 			</ul>
 		</article>
 	</section>
