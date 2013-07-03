@@ -8,14 +8,50 @@
                 <h2>History page: {{ title }}</h2>
             </header>
             <hr>
-            {% for entry in edit_record %}
+            {% for record in version_record %}
                 {% if loop.index is divisibleby 2 %}
                     <div class="row-even">
-                        <p>{{ entry.edit_date }} - {{ entry.edit_cont}} <span><a href="">view</a> <a href="">edit</a></span></p>
+                        <table>
+                            <tr>
+                                <td class="col-version">
+                                    v.{{record.version}}
+                                </td>
+
+                                <td class="col-created">
+                                    {{ record.created }}
+                                </td>
+
+                                <td>
+                                    {{ record.content }}
+                                </td>
+
+                                <td class="col-view">
+                                    <a href="{{ record.url }}?v={{record.version}}">view</a>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 {% else %}
                     <div class="row-uneven">
-                        <p>{{ entry.edit_date }} - {{ entry.edit_cont}} <span><a href="">view</a> <a href="">edit</a></span></p>
+                        <table>
+                            <tr>
+                                <td class="col-version">
+                                    v.{{record.version}}
+                                </td>
+
+                                <td class="col-created">
+                                    {{ record.created }}
+                                </td>
+
+                                <td>
+                                    {{ record.content }}
+                                </td>
+
+                                <td class="col-view">
+                                    <a href="{{ record.url }}?v={{record.version}}">view</a>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 {% endif %}
             {% endfor %}
