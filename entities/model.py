@@ -94,7 +94,7 @@ class WikiPageVersionRecord(db.Model):
  	def create(cls, wiki_page):
  		url = wiki_page.url
  		title = wiki_page.title
- 		content = wiki_page.content[-100:]
+ 		content = wiki_page.content
 		created = wiki_page.created
 		version = wiki_page.version
 		return WikiPageVersionRecord(wiki_page=wiki_page, url=url, title=title, content=content, created=created, version=version)
