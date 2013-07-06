@@ -13,6 +13,14 @@ hr {
 	margin: 10 20 10 auto;
 }
 
+ul {
+	margin: 10px;
+}
+
+li {
+	margin: 5px;
+}
+
 p, li {
 	color: #666;
 }
