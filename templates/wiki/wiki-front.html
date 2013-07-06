@@ -21,7 +21,7 @@
 				<h2>Wiki page: <a href="{{ page.url}}">{{ page.title }}</a></h2>
 				<hr>
 			</header>
-			<p>{{page.content.replace('\n', '<br>') | safe}}</p>
+			<p>{{ page.content | safe }}</p>
 		</article>
 		{% endfor %}
 	</section>
