@@ -3,6 +3,7 @@ import re
 USER_RE = re.compile(r"^[a-zA-Z0-9_-]{3,20}$")
 PASS_RE = re.compile(r"^.{3,20}$")
 MAIL_RE = re.compile(r"^[\S]+@[\S]+\.[\S]+$")
+TAGS_RE = re.compile(r"[</]+[a-zA-Z0-9]*[>]")
 
 def valid_username(username):
 	return USER_RE.match(username)
@@ -34,3 +35,8 @@ def escape_html(s):
 	if '"' in s:
 		s = s.replace('"', '&quot;')
 	return s
+
+def delete_html_tags(text):
+	for match in TAGS_RE.finditer(text):
+		text = text.replace(match.group(0), '')
+	return text
