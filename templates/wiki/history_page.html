@@ -22,7 +22,8 @@
                                 </td>
 
                                 <td>
-                                    {{ record.content }}
+                                    {% set c =  record.content[-100:] %}
+                                    {{ c }}
                                 </td>
 
                                 <td class="col-view">
@@ -44,7 +45,8 @@
                                 </td>
 
                                 <td>
-                                    {{ record.content }}
+                                    {% set c =  record.content[-100:] %}
+                                    {{ c }}
                                 </td>
 
                                 <td class="col-view">
