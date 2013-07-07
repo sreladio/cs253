@@ -95,6 +95,6 @@ class WikiPageVersionRecord(db.Model):
  		url = wiki_page.url
  		title = wiki_page.title
  		content = wiki_page.content
-		created = wiki_page.created
 		version = wiki_page.version
-		return WikiPageVersionRecord(wiki_page=wiki_page, url=url, title=title, content=content, created=created, version=version)
+		return WikiPageVersionRecord(wiki_page=wiki_page, url=url, title=title, 
+									 content=content, version=version)

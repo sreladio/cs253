@@ -23,8 +23,8 @@ from handlers import blog
 from handlers import auth
 from handlers import wiki
 
-# wiki page url
-PAGE_RE = r'(/(?:[a-zA-Z0-9_-]+/?)*)'
+# wiki page url pattern
+PAGE_RE = r'((?:[a-zA-Z0-9_-]+/?)*)'
     
 #
 # Handlers registrations
@@ -46,8 +46,8 @@ app = webapp2.WSGIApplication([
     ('/blog/flush', blog.FlushCache),
 
     
-    ('/wiki/_edit' + PAGE_RE, wiki.EditPage),
-    ('/wiki/_history' + PAGE_RE, wiki.HistoryPage),
+    ('/wiki/_edit/' + PAGE_RE, wiki.EditPage),
+    ('/wiki/_history/' + PAGE_RE, wiki.HistoryPage),
     webapp2.Route('/wiki/<page>', wiki.WikiPage, name='wiki-page'),
     ('/wiki/?', wiki.FrontPage),
 
